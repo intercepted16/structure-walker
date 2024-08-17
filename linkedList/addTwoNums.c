@@ -1,19 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "ListNode.h"
 
- struct ListNode {
-     int val;
-     struct ListNode *next;
- };
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+
+extern struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     struct ListNode* dummyHead = malloc(sizeof(struct ListNode));
     struct ListNode* current = dummyHead;
     // Loop over both nodes till exhausted, keeping track of carry(s) when adding
     int carry = 0;
     while (l1 != NULL || l2 != NULL || carry != 0) {
         // Add the place value
-                int val1 = (l1 != NULL) ? l1->val : 0;
-        int val2 = (l2 != NULL) ? l2->val : 0;
+        const int val1 = (l1 != NULL && l1->val != NULL) ? *(int *)l1->val : 0;
+        const int val2 = (l2 != NULL && l2->val != NULL) ? *(int *)l2->val : 0;
         int sum = val1 + val2 + carry;
         // Carry over the place value
         carry = sum / 10;
@@ -23,7 +21,7 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
         struct ListNode* newNode = malloc(sizeof(struct ListNode));
         current->next = newNode;
         current = current->next;
-        current->val = sum;
+        *(int *)(l2->val) = sum;
         current->next = NULL;
         // set the linked lists to the next number
         if (l1 != NULL) l1 = l1->next;
@@ -39,15 +37,16 @@ int main(void) {
     struct ListNode* l1 = malloc(sizeof(struct ListNode));
     struct ListNode* l2 = malloc(sizeof(struct ListNode));
     // Set the values
-    l1->val = 2;
+    *(int *)l1->val = 2;
     l1->next = NULL;
-    l2->val = 5;
+    // cast void * to int *
+    *(int *)l2->val = 2;
     l2->next = NULL;
     // Add the two numbers
     struct ListNode* result = addTwoNumbers(l1, l2);
     // Print the result
     while (result != NULL) {
-        printf("%d\n", result->val);
+        printf("%p\n", result->val);
         result = result->next;
     }
     return 0;

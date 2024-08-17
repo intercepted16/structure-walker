@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ListNode.h"
 
-typedef struct LinkedList {
-    char *val;
-    struct LinkedList *next;
-} LinkedList;
 
-LinkedList *createNode(const char *val) {
-    LinkedList *node =  malloc(sizeof(LinkedList));
+
+ListNode *createNode(const char *val) {
+    ListNode *node =  malloc(sizeof(ListNode));
     if (node == NULL) {
         // Failed to allocate memory
         fprintf(stderr, "Failed to allocate memory\n");
@@ -28,9 +26,9 @@ LinkedList *createNode(const char *val) {
     return node;
 }
 
-void freeList(LinkedList *head) {
-    LinkedList *current = head;
-    LinkedList *next = NULL;
+void freeList(ListNode *head) {
+    ListNode *current = head;
+    ListNode *next = NULL;
     while (current != NULL) {
         next = current->next;
         free(current->val);
@@ -39,9 +37,9 @@ void freeList(LinkedList *head) {
     }
 }
 
-int main(void) {
-    LinkedList *head = createNode(NULL);
-    LinkedList *current = head;
+int extern exampleLinkedList(void) {
+    ListNode *head = createNode(NULL);
+    ListNode *current = head;
     char input[30];
     while (1) {
         fgets(input, sizeof(input), stdin);
@@ -53,7 +51,7 @@ int main(void) {
             break;
         }
         // append it to the linked list
-        LinkedList *newNode = createNode(input);
+        ListNode *newNode = createNode(input);
         // Make the next node the new node
         current->next = newNode;
         // Reassign the current node to the new node
@@ -65,7 +63,7 @@ int main(void) {
 
     while (current != NULL) {
         if (current->val != NULL) {
-            printf("%s\n", current->val);
+            printf("%p\n", current->val);
         }
         current = current->next;
     }
