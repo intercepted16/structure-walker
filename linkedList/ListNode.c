@@ -4,23 +4,25 @@
 #include "ListNode.h"
 
 
-
-ListNode *createNode(const char *val) {
-    ListNode *node =  malloc(sizeof(ListNode));
+ListNode *createNode(const void *val, const size_t val_size) {
+    ListNode *node = malloc(sizeof(ListNode));
     if (node == NULL) {
         // Failed to allocate memory
         fprintf(stderr, "Failed to allocate memory\n");
         exit(EXIT_FAILURE);
     }
     if (val != NULL) {
-        node->val = strdup(val);
-
+        // create a copy of the value
+        node->val = malloc(val_size);
         if (node->val == NULL) {
-            // Failed to allocate memory for the string
+            // Failed to allocate memory for the value
             free(node);
             fprintf(stderr, "Failed to allocate memory for value\n");
             exit(EXIT_FAILURE);
         }
+        memcpy(node->val, val, val_size);
+    } else {
+        node->val = NULL;
     }
     node->next = NULL;
     return node;
@@ -37,9 +39,11 @@ void freeList(ListNode *head) {
     }
 }
 
+
 int extern exampleLinkedList(void) {
-    ListNode *head = createNode(NULL);
-    ListNode *current = head;
+    ListNode *l1 = createNode(NULL, 0);
+    ListNode *l2 = createNode(NULL, 0);
+    ListNode *current = l1;
     char input[30];
     while (1) {
         fgets(input, sizeof(input), stdin);
@@ -50,23 +54,12 @@ int extern exampleLinkedList(void) {
         if (strcmp(input, "q") == 0) {
             break;
         }
-        // append it to the linked list
-        ListNode *newNode = createNode(input);
-        // Make the next node the new node
+        // create a new node
+        ListNode *newNode = createNode(input, strlen(input) + 1);
         current->next = newNode;
-        // Reassign the current node to the new node
-        // ^^ this seems odd, but it's because we recursively loop through it
-        current = newNode;
-    }
-
-    current = head;
-
-    while (current != NULL) {
-        if (current->val != NULL) {
-            printf("%p\n", current->val);
-        }
         current = current->next;
     }
-    freeList(head);
+    freeList(l1);
+    freeList(l2);
     return 0;
 }

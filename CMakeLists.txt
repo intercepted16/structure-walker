@@ -1,7 +1,6 @@
-cmake_minimum_required(VERSION 3.28)
-project(data_structures C)
+cmake_minimum_required(VERSION 3.8)
+project(data-structures C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(linkedList.out linkedList/ListNode.c)
-add_executable(addTwoNums.out linkedList/addTwoNums.c)
+add_executable(data-structures.out main.c)
