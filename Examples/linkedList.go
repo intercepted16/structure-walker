@@ -1,4 +1,4 @@
-package linkedListExamples
+package Examples
 
 import "C"
 import (
