@@ -38,28 +38,3 @@ void freeList(ListNode *head) {
         current = next;
     }
 }
-
-
-int extern exampleLinkedList(void) {
-    ListNode *l1 = createNode(NULL, 0);
-    ListNode *l2 = createNode(NULL, 0);
-    ListNode *current = l1;
-    char input[30];
-    while (1) {
-        fgets(input, sizeof(input), stdin);
-        // Strip the newline character
-        input[strcspn(input, "\n")] = 0;
-        printf("You entered: %s\n", input);
-        // if input is "q", exit
-        if (strcmp(input, "q") == 0) {
-            break;
-        }
-        // create a new node
-        ListNode *newNode = createNode(input, strlen(input) + 1);
-        current->next = newNode;
-        current = current->next;
-    }
-    freeList(l1);
-    freeList(l2);
-    return 0;
-}
