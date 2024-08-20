@@ -64,3 +64,5 @@ _deps
 CMakeUserPresets.json
 .idea
 cmake-build-debug
+
+.env

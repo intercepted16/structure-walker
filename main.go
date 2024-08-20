@@ -4,6 +4,9 @@ import "C"
 import (
 	"fmt"
 	"github.com/charmbracelet/huh"
+	"github.com/joho/godotenv"
+	"os"
+	"strconv"
 	"time"
 )
 
@@ -12,8 +15,52 @@ import (
 )
 
 var (
-	demonstration string
+	demonstration        string
+	disableInteractivity bool
+	verbose              bool
 )
+
+func LoadEnv() {
+	// Load .env file
+	err := godotenv.Load()
+	if err != nil {
+		if verbose {
+			fmt.Println("Error loading .env file")
+		}
+	}
+
+	// Function to get environment variable with a default value
+	getEnv := func(key, defaultValue string) string {
+		value, exists := os.LookupEnv(key)
+		if !exists {
+			return defaultValue
+		}
+		return value
+	}
+	verbose, err = strconv.ParseBool(getEnv("VERBOSE", "false"))
+	if err != nil {
+		if verbose {
+			fmt.Println("Error parsing VERBOSE:", err)
+		}
+		verbose = false
+	}
+
+	// Example usage
+	disableInteractivity, err = strconv.ParseBool(getEnv("DISABLE_INTERACTIVITY", "false"))
+	if err != nil {
+		if verbose {
+			fmt.Println("Error parsing DISABLE_INTERACTIVITY:", err)
+		}
+		disableInteractivity = false
+	}
+	if verbose {
+		fmt.Println("DISABLE_INTERACTIVITY:", disableInteractivity)
+	}
+}
+
+func init() {
+	LoadEnv()
+}
 
 func main() {
 	err := huh.NewSelect[string]().
@@ -29,19 +76,21 @@ func main() {
 	println("You chose:", demonstration)
 	switch demonstration {
 	case "linked-list":
-		messages := []string{
-			"This demonstrates a linked list.",
-			"It is a simple implementation of a linked list in C.",
-			"It works by creating a `Node` struct that contains a value and a pointer to the next node.",
-			"A linked list is a data structure that consists of nodes, each node containing a value and a pointer to the next node.",
-			"This is contrasted with an array, where you have to resize the array to add or remove elements.",
-			"For example, this isn't well known, but, in Python, the 'arrays' are actually linked lists.",
-			"They are especially useful when you don't know the size of the data you are working with.",
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a linked list.",
+				"It is a simple implementation of a linked list in C.",
+				"It works by creating a `Node` struct that contains a value and a pointer to the next node.",
+				"A linked list is a data structure that consists of nodes, each node containing a value and a pointer to the next node.",
+				"This is contrasted with an array, where you have to resize the array to add or remove elements.",
+				"For example, this isn't well known, but, in Python, the 'arrays' are actually linked lists.",
+				"They are especially useful when you don't know the size of the data you are working with.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
 		}
-		messages = Map(messages, func(message string) string {
-			return message + "\n"
-		})
-		printMessagesWithDelay(messages, 2*time.Second)
 		ExampleLinkedList()
 		err := huh.NewSelect[string]().
 			Title("Do you want to see the code?").
@@ -64,27 +113,23 @@ func main() {
 			}
 		}
 	case "add-two-numbers":
-		messages := []string{
-			"This demonstrates adding two numbers, each number represented by a linked list of digits.",
-			"It is a solution to the LeetCode problem for adding two numbers.",
-			"It works by creating two linked lists, each representing a number.",
-			"It then adds the two linked lists and returns the result as a linked list.",
-			"it adds them manually in reverse order, carrying over the remainder to the next node.",
-			"Almost as if you were adding two numbers on paper.",
-		}
-
-		// add '\n' to each message
-		messages = Map(messages, func(message string) string {
-			return message + "\n"
-		})
-		// debug: check that the messages end with '\n'
-		for _, message := range messages {
-			if message[len(message)-1] != '\n' {
-				println("The message does not end with a newline character")
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates adding two numbers, each number represented by a linked list of digits.",
+				"It is a solution to the LeetCode problem for adding two numbers.",
+				"It works by creating two linked lists, each representing a number.",
+				"It then adds the two linked lists and returns the result as a linked list.",
+				"it adds them manually in reverse order, carrying over the remainder to the next node.",
+				"Almost as if you were adding two numbers on paper.",
 			}
-		}
 
-		printMessagesWithDelay(messages, 2*time.Second)
+			// add '\n' to each message
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
 
 		ExampleAddTwoNumbers()
 
