@@ -8,4 +8,9 @@ typedef struct ListNode {
     void *val;
     struct ListNode *next;
 } ListNode;
+
+ListNode *createNode(const void *val, const size_t val_size);
+void freeList(ListNode *head);
+
+
 #endif //LISTNODE_H

@@ -70,6 +70,7 @@ func main() {
 			huh.NewOption("Linked List", "linked-list"),
 			huh.NewOption("Add two numbers represented by linked lists", "add-two-numbers"),
 			huh.NewOption("Hash Table", "hash-table"),
+			huh.NewOption("Binary Search Tree", "binary-search-tree"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -171,5 +172,20 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleHashTable()
+	case "binary-search-tree":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a binary search tree.",
+				"It is a simple implementation of a binary search tree in C.",
+				"It works by creating a `Node` struct that contains a value and pointers to the left and right children.",
+				"A binary search tree is a data structure that allows for efficient lookup, insertion, and deletion of values.",
+				"It is especially useful when you need to maintain a sorted collection of values.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+			ExampleBinaryTree()
+		}
 	}
 }
