@@ -63,3 +63,6 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 .idea
+cmake-build-debug
+
+.env
