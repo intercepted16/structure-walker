@@ -37,7 +37,6 @@ func printTree(node *C.struct_TreeNode, indent string, last bool) {
 
 func ExampleBinaryTree() {
 	// Create a new binary search tree with the root value 1
-
 	bst := C.createTreeNode(C.int(1))
 	if bst == nil {
 		return
@@ -46,7 +45,6 @@ func ExampleBinaryTree() {
 	// Insert some values into the binary search tree
 	C.insertTreeNode(&bst, C.int(5))
 	C.insertTreeNode(&bst, C.int(3))
-	println("left subtree", bst.left)
 
 	// Print the binary search tree
 	printTree(bst, "", true)
