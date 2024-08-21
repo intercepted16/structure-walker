@@ -185,7 +185,7 @@ func main() {
 				return message + "\n"
 			})
 			printMessagesWithDelay(messages, 2*time.Second)
-			ExampleBinaryTree()
 		}
+		ExampleBinaryTree()
 	}
 }

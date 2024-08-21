@@ -4,37 +4,50 @@ package Examples
 #include "../BinarySearchTree/BinaryTree.c"
 */
 import "C"
+import (
+	"fmt"
+)
 
-// Function to print the binary search tree
-func printTree(bst *C.TreeNode) {
-	if bst == nil {
+func printTree(node *C.struct_TreeNode, indent string, last bool) {
+	if node == nil {
 		return
 	}
-	// Print the left subtree
-	printTree(bst.left)
-	// Print the current node value
-	print(int(bst.val), " ")
-	// Print the right subtree
-	printTree(bst.right)
+
+	// Print the current node
+	fmt.Print(indent)
+	if last {
+		fmt.Print("└── ")
+		indent += "    "
+	} else {
+		fmt.Print("├── ")
+		indent += "│   "
+	}
+	fmt.Println(node.val)
+
+	// Recursively print the left and right subtrees
+	if node.left != nil || node.right != nil {
+		if node.left != nil {
+			printTree(node.left, indent, false)
+		}
+		if node.right != nil {
+			printTree(node.right, indent, true)
+		}
+	}
 }
 
 func ExampleBinaryTree() {
 	// Create a new binary search tree with the root value 1
-	bst := C.createNode(C.int(1))
+
+	bst := C.createTreeNode(C.int(1))
 	if bst == nil {
 		return
 	}
-	defer C.freeNode(bst)
-
+	defer C.freeTreeNode(bst)
 	// Insert some values into the binary search tree
-	C.insertNode(bst, C.int(5))
-	C.insertNode(bst, C.int(3))
-	C.insertNode(bst, C.int(7))
-	C.insertNode(bst, C.int(2))
-	C.insertNode(bst, C.int(4))
-	C.insertNode(bst, C.int(6))
-	C.insertNode(bst, C.int(8))
+	C.insertTreeNode(&bst, C.int(5))
+	C.insertTreeNode(&bst, C.int(3))
+	println("left subtree", bst.left)
 
 	// Print the binary search tree
-	printTree(bst)
+	printTree(bst, "", true)
 }
