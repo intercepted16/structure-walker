@@ -1,7 +1,6 @@
 package main
 
 import (
-	"C"
 	"fmt"
 	"github.com/charmbracelet/huh"
 	"github.com/joho/godotenv"
@@ -186,6 +185,29 @@ func main() {
 			})
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
+
 		ExampleBinaryTree()
+		// Add a button to choose if you want to see the code
+		err = huh.NewSelect[string]().
+			Title("Do you want to see the code?").
+			Options(
+				huh.NewOption("Yes", "yes"),
+				huh.NewOption("No", "no"),
+			).
+			Value(&demonstration).Run()
+		if err != nil {
+			return
+		}
+		if demonstration == "yes" {
+			// Print the introductory message
+			fmt.Println("Here is the code for the binary search tree")
+			err = readAndPrintCode("BinarySearchTree/BinaryTree.c")
+			if err != nil {
+				return
+			}
+		}
+		if demonstration == "no" {
+			fmt.Println("Goodbye!")
+		}
 	}
 }
