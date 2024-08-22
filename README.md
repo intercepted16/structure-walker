@@ -64,7 +64,3 @@ If you’d like to contribute, please fork the repository and submit a pull requ
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
-## Contact
-
-For questions or feedback, please contact [your email address or GitHub profile](#).
