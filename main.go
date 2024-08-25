@@ -71,6 +71,7 @@ func main() {
 			huh.NewOption("Hash Table", "hash-table"),
 			huh.NewOption("Binary Search Tree", "binary-search-tree"),
 			huh.NewOption("Queue", "queue"),
+			huh.NewOption("Stack", "stack"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -245,6 +246,49 @@ func main() {
 				return
 			}
 			err = readAndPrintCode("Queue/Queue.c")
+			if err != nil {
+				return
+			}
+		}
+		if demonstration == "no" {
+			fmt.Println("Goodbye!")
+		}
+
+	case "stack":
+		// Print the introductory message
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a stack.",
+				"It is a simple implementation of a stack in C.",
+				"It works by creating a `Stack` struct that contains a pointer to the top of the stack.",
+				"A stack is a data structure that allows for last-in, first-out (LIFO) access to elements.",
+				"It is useful for implementing algorithms that require a last-in, first-out order, such as depth-first search.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
+		ExampleStack()
+		// Add a button to choose if you want to see the code
+		err = huh.NewSelect[string]().
+			Title("Do you want to see the code?").
+			Options(
+				huh.NewOption("Yes", "yes"),
+				huh.NewOption("No", "no"),
+			).
+			Value(&demonstration).Run()
+		if err != nil {
+			return
+		}
+		if demonstration == "yes" {
+			// Print the introductory message
+			fmt.Println("Here is the code for the stack")
+			err := readAndPrintCode("Stack/Stack.h")
+			if err != nil {
+				return
+			}
+			err = readAndPrintCode("Stack/Stack.c")
 			if err != nil {
 				return
 			}
