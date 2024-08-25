@@ -70,6 +70,7 @@ func main() {
 			huh.NewOption("Add two numbers represented by linked lists", "add-two-numbers"),
 			huh.NewOption("Hash Table", "hash-table"),
 			huh.NewOption("Binary Search Tree", "binary-search-tree"),
+			huh.NewOption("Queue", "queue"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -202,6 +203,48 @@ func main() {
 			// Print the introductory message
 			fmt.Println("Here is the code for the binary search tree")
 			err = readAndPrintCode("BinarySearchTree/BinaryTree.c")
+			if err != nil {
+				return
+			}
+		}
+		if demonstration == "no" {
+			fmt.Println("Goodbye!")
+		}
+	case "queue":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a queue.",
+				"It is relatively self explanatory; a grocery store has a queue, any waiting line does.",
+				"It is a simple implementation of a queue in C.",
+				"It works by creating a `Queue` struct that contains pointers to the head and tail of the queue.",
+				"A queue is a data structure that allows for first-in, first-out (FIFO) access to elements.",
+				"It is useful for implementing algorithms that require a first-in, first-out order, such as breadth-first search.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
+		ExampleQueue()
+		// Add a button to choose if you want to see the code
+		err = huh.NewSelect[string]().
+			Title("Do you want to see the code?").
+			Options(
+				huh.NewOption("Yes", "yes"),
+				huh.NewOption("No", "no"),
+			).
+			Value(&demonstration).Run()
+		if err != nil {
+			return
+		}
+		if demonstration == "yes" {
+			// Print the introductory message
+			fmt.Println("Here is the code for the queue")
+			err := readAndPrintCode("Queue/Queue.h")
+			if err != nil {
+				return
+			}
+			err = readAndPrintCode("Queue/Queue.c")
 			if err != nil {
 				return
 			}
