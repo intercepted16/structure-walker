@@ -96,26 +96,7 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleLinkedList()
-		err := huh.NewSelect[string]().
-			Title("Do you want to see the code?").
-			Options(
-				huh.NewOption("Yes", "yes"),
-				huh.NewOption("No", "no"),
-			).
-			Value(&demonstration).Run()
-		if err != nil {
-			return
-		}
-		if demonstration == "yes" {
-			err = readAndPrintCode("linkedList/ListNode.c")
-			if err != nil {
-				return
-			}
-			err = readAndPrintCode("linkedList/addTwoNums.c")
-			if err != nil {
-				return
-			}
-		}
+		promptForCode("linkedList/ListNode.c")
 	case "add-two-numbers":
 		if !disableInteractivity {
 			messages := []string{
@@ -136,26 +117,7 @@ func main() {
 		}
 
 		ExampleAddTwoNumbers()
-
-		// Add a button to choose if you want to see the code
-		err = huh.NewSelect[string]().
-			Title("Do you want to see the code?").
-			Options(
-				huh.NewOption("Yes", "yes"),
-				huh.NewOption("No", "no"),
-			).
-			Value(&demonstration).Run()
-		if err != nil {
-			return
-		}
-		if demonstration == "yes" {
-			// Print the introductory message
-			fmt.Println("Here is the code for adding two numbers using linked lists")
-			err = readAndPrintCode("linkedList/addTwoNums.c")
-			if err != nil {
-				return
-			}
-		}
+		promptForCode("linkedList/ListNode.c", "linkedList/addTwoNums.c")
 
 	case "hash-table":
 		if !disableInteractivity {
@@ -173,6 +135,7 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleHashTable()
+		promptForCode("HashTable/HashTable.h", "HashTable/HashTable.c")
 	case "binary-search-tree":
 		if !disableInteractivity {
 			messages := []string{
@@ -189,28 +152,7 @@ func main() {
 		}
 
 		ExampleBinaryTree()
-		// Add a button to choose if you want to see the code
-		err = huh.NewSelect[string]().
-			Title("Do you want to see the code?").
-			Options(
-				huh.NewOption("Yes", "yes"),
-				huh.NewOption("No", "no"),
-			).
-			Value(&demonstration).Run()
-		if err != nil {
-			return
-		}
-		if demonstration == "yes" {
-			// Print the introductory message
-			fmt.Println("Here is the code for the binary search tree")
-			err = readAndPrintCode("BinarySearchTree/BinaryTree.c")
-			if err != nil {
-				return
-			}
-		}
-		if demonstration == "no" {
-			fmt.Println("Goodbye!")
-		}
+		promptForCode("BinarySearchTree/BinaryTree.h", "BinarySearchTree/BinaryTree.c")
 	case "queue":
 		if !disableInteractivity {
 			messages := []string{
@@ -227,32 +169,7 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleQueue()
-		// Add a button to choose if you want to see the code
-		err = huh.NewSelect[string]().
-			Title("Do you want to see the code?").
-			Options(
-				huh.NewOption("Yes", "yes"),
-				huh.NewOption("No", "no"),
-			).
-			Value(&demonstration).Run()
-		if err != nil {
-			return
-		}
-		if demonstration == "yes" {
-			// Print the introductory message
-			fmt.Println("Here is the code for the queue")
-			err := readAndPrintCode("Queue/Queue.h")
-			if err != nil {
-				return
-			}
-			err = readAndPrintCode("Queue/Queue.c")
-			if err != nil {
-				return
-			}
-		}
-		if demonstration == "no" {
-			fmt.Println("Goodbye!")
-		}
+		promptForCode("Queue/Queue.h", "Queue/Queue.c")
 
 	case "stack":
 		// Print the introductory message
@@ -270,31 +187,6 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleStack()
-		// Add a button to choose if you want to see the code
-		err = huh.NewSelect[string]().
-			Title("Do you want to see the code?").
-			Options(
-				huh.NewOption("Yes", "yes"),
-				huh.NewOption("No", "no"),
-			).
-			Value(&demonstration).Run()
-		if err != nil {
-			return
-		}
-		if demonstration == "yes" {
-			// Print the introductory message
-			fmt.Println("Here is the code for the stack")
-			err := readAndPrintCode("Stack/Stack.h")
-			if err != nil {
-				return
-			}
-			err = readAndPrintCode("Stack/Stack.c")
-			if err != nil {
-				return
-			}
-		}
-		if demonstration == "no" {
-			fmt.Println("Goodbye!")
-		}
+		promptForCode("Stack/Stack.h", "Stack/Stack.c")
 	}
 }
