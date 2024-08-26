@@ -1,7 +1,7 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#include "../linkedList/ListNode.h"
+#include "../LinkedList/ListNode.h"
 
 #define TABLE_SIZE 100
 

@@ -72,6 +72,7 @@ func main() {
 			huh.NewOption("Binary Search Tree", "binary-search-tree"),
 			huh.NewOption("Queue", "queue"),
 			huh.NewOption("Stack", "stack"),
+			huh.NewOption("Doubly Linked List", "doubly-linked-list"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -96,7 +97,7 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleLinkedList()
-		promptForCode("linkedList/ListNode.c")
+		promptForCode("LinkedList/ListNode.c")
 	case "add-two-numbers":
 		if !disableInteractivity {
 			messages := []string{
@@ -117,7 +118,7 @@ func main() {
 		}
 
 		ExampleAddTwoNumbers()
-		promptForCode("linkedList/ListNode.c", "linkedList/addTwoNums.c")
+		promptForCode("LinkedList/ListNode.c", "LinkedList/addTwoNums.c")
 
 	case "hash-table":
 		if !disableInteractivity {
@@ -188,5 +189,21 @@ func main() {
 		}
 		ExampleStack()
 		promptForCode("Stack/Stack.h", "Stack/Stack.c")
+	case "doubly-linked-list":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a doubly linked list.",
+				"It is a simple implementation of a doubly linked list in C.",
+				"It works by creating a `DoubleNode` struct that contains a value and pointers to the next and previous nodes.",
+				"A doubly linked list is a data structure that allows for efficient insertion and deletion of elements.",
+				"It is especially useful when you need to quickly insert or delete elements in the middle of a list.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
+		ExampleDoublyLinkedList()
+		promptForCode("DoublyLinkedList/DoublyLinkedList.h", "DoublyLinkedList/DoublyLinkedList.c")
 	}
 }

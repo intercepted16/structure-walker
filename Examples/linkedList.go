@@ -10,8 +10,8 @@ import (
 )
 
 /*
-#include "../linkedList/ListNode.c"
-#include "../linkedList/addTwoNums.c"
+#include "../LinkedList/ListNode.c"
+#include "../LinkedList/addTwoNums.c"
 */
 import "C"
 

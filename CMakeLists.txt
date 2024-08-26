@@ -1,3 +1,6 @@
 add_library(BinaryTree SHARED BinarySearchTree/BinaryTree.c BinarySearchTree/BinaryTree.h)
 add_library(Queue SHARED Queue/Queue.c Queue/Queue.h)
 add_library(Stack SHARED Stack/Stack.c Stack/Stack.h)
+add_library(LinkedList SHARED LinkedList/ListNode.c LinkedList/ListNode.h)
+add_library(HashTable SHARED HashTable/HashTable.c HashTable/HashTable.h)
+add_library(DoublyLinkedList SHARED DoublyLinkedList/DoublyLinkedList.c DoublyLinkedList/DoublyLinkedList.h)
