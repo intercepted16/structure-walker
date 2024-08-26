@@ -10,7 +10,7 @@ import (
 )
 
 import (
-	. "data-structures/Examples"
+	. "structure-walker/Examples"
 )
 
 var (
@@ -73,6 +73,7 @@ func main() {
 			huh.NewOption("Queue", "queue"),
 			huh.NewOption("Stack", "stack"),
 			huh.NewOption("Doubly Linked List", "doubly-linked-list"),
+			huh.NewOption("Breadth First Search", "bfs"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -205,5 +206,7 @@ func main() {
 		}
 		ExampleDoublyLinkedList()
 		promptForCode("DoublyLinkedList/DoublyLinkedList.h", "DoublyLinkedList/DoublyLinkedList.c")
+	case "bfs":
+		ExampleBreadthFirstSearch()
 	}
 }

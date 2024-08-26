@@ -1,4 +1,4 @@
-module data-structures
+module structure-walker
 
 go 1.22.5
 
