@@ -65,3 +65,4 @@ CMakeUserPresets.json
 cmake-build-debug
 
 .env
+.cmake/

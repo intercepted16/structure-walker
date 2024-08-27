@@ -1,27 +1,9 @@
 package BreadthFirstSearch
 
-import "fmt"
-
-// Maze represents a maze with a start and end point.
-type Maze [][]int // 2D array of numbers
-
-// FindStartAndEnd identifies the start and end points in the maze.
-func FindStartAndEnd(maze Maze) ([]int, []int) {
-	var start []int
-	var end []int
-
-	for y := 0; y < len(maze); y++ {
-		for x := 0; x < len(maze[y]); x++ {
-			if maze[y][x] == 2 {
-				start = []int{x, y}
-			} else if maze[y][x] == 3 {
-				end = []int{x, y}
-			}
-		}
-	}
-
-	return start, end
-}
+import (
+	"fmt"
+	. "structure-walker/Maze"
+)
 
 // Queue represents a queue data structure.
 type Queue struct {

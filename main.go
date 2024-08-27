@@ -74,6 +74,7 @@ func main() {
 			huh.NewOption("Stack", "stack"),
 			huh.NewOption("Doubly Linked List", "doubly-linked-list"),
 			huh.NewOption("Breadth First Search", "bfs"),
+			huh.NewOption("Depth First Search", "dfs"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -208,5 +209,7 @@ func main() {
 		promptForCode("DoublyLinkedList/DoublyLinkedList.h", "DoublyLinkedList/DoublyLinkedList.c")
 	case "bfs":
 		ExampleBreadthFirstSearch()
+	case "dfs":
+		ExampleDepthFirstSearch()
 	}
 }
