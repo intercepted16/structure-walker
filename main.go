@@ -257,6 +257,7 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleMinHeap()
+		promptForCode("MinHeapTree/MinHeapTree.h", "MinHeapTree/MinHeapTree.c")
 	case "max-heap":
 		if !disableInteractivity {
 			messages := []string{
@@ -272,5 +273,6 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleMaxHeap()
+		promptForCode("MaxHeapTree/MaxHeapTree.h", "MaxHeapTree/MaxHeapTree.c")
 	}
 }
