@@ -1,9 +1,9 @@
 #ifndef STACK_H
 #define STACK_H
 
-typedef struct Node {
+typedef struct MinHeapNode {
     int val;
-    struct Node *next;
+    struct MinHeapNode *next;
 } Node;
 
 typedef struct Stack {

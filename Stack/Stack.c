@@ -13,7 +13,7 @@ struct Stack* createStack() {
 
 // Push a new element onto the stack
 int push(struct Stack *s, const int val) {
-    Node *newNode = malloc(sizeof(struct Node));
+    Node *newNode = malloc(sizeof(struct MinHeapNode));
     if (newNode == NULL) {
         return -1;  // Return error code if memory allocation fails
     }

@@ -4,9 +4,9 @@
 
 #ifndef QUEUE_H
 #define QUEUE_H
-typedef struct Node {
+typedef struct MinHeapNode {
     int val;
-    struct Node *next;
+    struct MinHeapNode *next;
 } Node;
 
 typedef struct Queue {

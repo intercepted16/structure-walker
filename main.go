@@ -75,6 +75,8 @@ func main() {
 			huh.NewOption("Doubly Linked List", "doubly-linked-list"),
 			huh.NewOption("Breadth First Search", "bfs"),
 			huh.NewOption("Depth First Search", "dfs"),
+			huh.NewOption("Min Heap", "min-heap"),
+			huh.NewOption("Max Heap", "max-heap"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -239,5 +241,36 @@ func main() {
 		}
 		ExampleDepthFirstSearch()
 		promptForCode("DepthFirstSearch/Stack.go", "DepthFirstSearch/DepthFirstSearch.go")
+
+	case "min-heap":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a min heap.",
+				"It is a simple implementation of a min heap in C.",
+				"It works by creating a `MinHeap` struct that contains an array of integers.",
+				"A min heap is a complete binary tree where the parent is smaller than its children.",
+				"It is useful for finding the minimum element in constant time.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
+		ExampleMinHeap()
+	case "max-heap":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a max heap.",
+				"It is a simple implementation of a max heap in C.",
+				"It works by creating a `MaxHeap` struct that contains an array of integers.",
+				"A max heap is a complete binary tree where the parent is larger than its children.",
+				"It is useful for finding the maximum element in constant time.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
+		ExampleMaxHeap()
 	}
 }
