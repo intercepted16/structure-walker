@@ -208,8 +208,36 @@ func main() {
 		ExampleDoublyLinkedList()
 		promptForCode("DoublyLinkedList/DoublyLinkedList.h", "DoublyLinkedList/DoublyLinkedList.c")
 	case "bfs":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a breadth-first search.",
+				"It is a simple implementation of a breadth-first search in C.",
+				"It works by creating a `Queue` struct that contains a queue of paths.",
+				"A breadth-first search is an algorithm that searches a tree or graph level by level.",
+				"It is useful for finding the shortest path between two nodes.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
 		ExampleBreadthFirstSearch()
+		promptForCode("BreadthFirstSearch/BreadthFirstSearch.go")
 	case "dfs":
+		if !disableInteractivity {
+			messages := []string{
+				"This demonstrates a depth-first search.",
+				"It is a simple implementation of a depth-first search in C.",
+				"It works by creating a `Stack` struct that contains a stack of paths.",
+				"A depth-first search is an algorithm that searches a tree or graph by exploring as far as possible along each branch before backtracking.",
+				"It is useful for finding a path between two nodes, but may not find the shortest path.",
+			}
+			messages = Map(messages, func(message string) string {
+				return message + "\n"
+			})
+			printMessagesWithDelay(messages, 2*time.Second)
+		}
 		ExampleDepthFirstSearch()
+		promptForCode("DepthFirstSearch/Stack.go", "DepthFirstSearch/DepthFirstSearch.go")
 	}
 }
