@@ -222,7 +222,7 @@ func main() {
 			printMessagesWithDelay(messages, 2*time.Second)
 		}
 		ExampleBreadthFirstSearch()
-		promptForCode("BreadthFirstSearch/BreadthFirstSearch.go")
+		promptForCode("BreadthFirstSearch/Queue.go", "BreadthFirstSearch/BreadthFirstSearch.go")
 	case "dfs":
 		if !disableInteractivity {
 			messages := []string{
