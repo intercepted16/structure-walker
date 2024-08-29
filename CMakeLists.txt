@@ -7,3 +7,4 @@ add_library(DoublyLinkedList SHARED DoublyLinkedList/DoublyLinkedList.c DoublyLi
 add_library(MaxHeapTree SHARED MaxHeapTree/MaxHeapTree.c MaxHeapTree/MaxHeapTree.h)
 add_library(MinHeapTree SHARED MinHeapTree/MinHeapTree.h
         MinHeapTree/MinHeapTree.c)
+add_library(Trie SHARED Trie/Trie.c Trie/Trie.h)
