@@ -78,6 +78,7 @@ func main() {
 			huh.NewOption("Min Heap", "min-heap"),
 			huh.NewOption("Max Heap", "max-heap"),
 			huh.NewOption("Trie", "trie"),
+			huh.NewOption("B-Tree", "b-tree"),
 		).
 		Value(&demonstration).Run()
 	if err != nil {
@@ -277,5 +278,7 @@ func main() {
 		promptForCode("MaxHeapTree/MaxHeapTree.h", "MaxHeapTree/MaxHeapTree.c")
 	case "trie":
 		ExampleTrie()
+	case "b-tree":
+		ExampleBTree()
 	}
 }
