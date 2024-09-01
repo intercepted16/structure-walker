@@ -1,4 +1,20 @@
 # Structure-Walker
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-direction: column">
+  <img src="docs/image.png" alt="Image description"/>
+  <iframe 
+    width="500" 
+    height="200" 
+    src="https://www.youtube.com/embed/SJS8YsVZxYE" 
+    title="Structure Walker - Hack Club Demo" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen 
+    style="height: 200px; width: 500px;">
+  </iframe>
+</div>
+
+<br>
 
 **Structure-Walker** is an interactive demonstration and walkthrough of data structures, written in C and Go. It utilizes C for data structure implementation and Go for interactivity and walkthrough features.
 
@@ -11,6 +27,8 @@
 
 To use the project, run the compiled executable. You can either download it from the [releases page](#) (work in progress) or compile it manually.
 
+Once run, the program will interactively guide you.
+
 ### Running the Application
 
 ```sh
@@ -19,7 +37,7 @@ To use the project, run the compiled executable. You can either download it from
 
 or on Windows:
 
-```sh
+```pwsh
 ./data-structures.exe
 ```
 
@@ -53,7 +71,7 @@ This project uses C for data structure implementation and requires the following
 
    or on Windows:
 
-   ```sh
+   ```pwsh
    ./data-structures.exe
    ```
 
